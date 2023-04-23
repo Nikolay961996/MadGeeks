@@ -10,7 +10,9 @@ namespace Mad.Api.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
+
+        public const int minPossibleTemperature = -40, maxPossibleTemperature = 40, daysToPrint = 7;
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -53,17 +55,21 @@ namespace Mad.Api.Controllers
         public IActionResult GetWeekForecast()
         {
             var weatherApp = new WeatherForecast();
-            var correctSummary = new CorrectSummaries();
+            var humanFeelSummaries = new HumanFeelSummaries();
 
-            for (int i = 0; i < 7; i++)
+            var todayDate = DateTime.Today;
+
+            List<string> forecast = new List<string>();
+            for (int i = 0; i < daysToPrint; i++)
             {
-                weatherApp.Date = DateOnly.FromDateTime(DateTime.Now.AddDays(i));
-                weatherApp.TemperatureC = Random.Shared.Next(-30, 40);
-                weatherApp.Summary = Summaries[correctSummary.CalculateIndex(weatherApp.TemperatureC)];
+                weatherApp.Date = DateOnly.FromDateTime(todayDate.AddDays(i));
+                weatherApp.TemperatureC = Random.Shared.Next(minPossibleTemperature, maxPossibleTemperature);
+                weatherApp.Summary = Summaries[humanFeelSummaries.CalculateIndex(weatherApp.TemperatureC)];
+                forecast.Add("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
                 Console.WriteLine("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
             }
 
-            return Ok();
+            return Ok(forecast);
         }
     }
 }
