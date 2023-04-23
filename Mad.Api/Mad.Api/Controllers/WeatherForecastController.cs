@@ -49,5 +49,21 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("bradamar-week-forecast-console")]
+        public IActionResult GetWeekForecast()
+        {
+            var weatherApp = new WeatherForecast();
+            var correctSummary = new CorrectSummaries();
+
+            for (int i = 0; i < 7; i++)
+            {
+                weatherApp.Date = DateOnly.FromDateTime(DateTime.Now.AddDays(i));
+                weatherApp.TemperatureC = Random.Shared.Next(-30, 40);
+                weatherApp.Summary = Summaries[correctSummary.CalculateIndex(weatherApp.TemperatureC)];
+                Console.WriteLine("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
+            }
+
+            return Ok();
+        }
     }
 }
