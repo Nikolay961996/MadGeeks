@@ -49,5 +49,16 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
+        [HttpOptions("options-current")]
+        public WeatherForecast OptionOfCurrentWeather()
+        {
+            var weatherInNewYork = new WeatherForecast();
+
+            weatherInNewYork.Date = new DateOnly(2023, 4, 25);
+            weatherInNewYork.TemperatureC = 13;
+            weatherInNewYork.Summary = "What I can say about weather in NewYork. Google says it's sunny, but I can't prove it becouse Ihave never been there.";
+
+            return weatherInNewYork;
+        }
     }
 }
