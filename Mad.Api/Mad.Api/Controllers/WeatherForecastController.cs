@@ -48,5 +48,16 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("options-current/weather-in-NewYork")]
+        public WeatherForecast OptionOfCurrentWeather()
+        {
+            var weatherInNewYork = new WeatherForecast();
+
+            weatherInNewYork.Date = DateOnly.FromDateTime(DateTime.Now);
+            weatherInNewYork.TemperatureC = Random.Shared.Next(-70, 55);
+            weatherInNewYork.Summary = Summaries[Random.Shared.Next(Summaries.Length)];
+
+            return weatherInNewYork;
+        }
     }
 }
