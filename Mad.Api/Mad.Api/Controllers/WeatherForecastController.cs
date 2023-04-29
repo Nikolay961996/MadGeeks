@@ -49,7 +49,7 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
-        [HttpOptions("options-current/weather-in-NewYork")]
+        [HttpGet("options-current/weather-in-NewYork")]
         public WeatherForecast OptionOfCurrentWeather()
         {
             var weatherInNewYork = new WeatherForecast();
