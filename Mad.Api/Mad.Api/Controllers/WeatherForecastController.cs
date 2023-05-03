@@ -56,17 +56,15 @@ namespace Mad.Api.Controllers
         {
             var weatherApp = new WeatherForecast();
             var humanFeelSummaries = new HumanFeelSummaries();
-
+            var forecast = new List<string>();
             var todayDate = DateTime.Today;
 
-            List<string> forecast = new List<string>();
             for (int i = 0; i < daysToPrint; i++)
             {
                 weatherApp.Date = DateOnly.FromDateTime(todayDate.AddDays(i));
                 weatherApp.TemperatureC = Random.Shared.Next(minPossibleTemperature, maxPossibleTemperature);
                 weatherApp.Summary = Summaries[humanFeelSummaries.CalculateIndex(weatherApp.TemperatureC)];
                 forecast.Add("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
-                Console.WriteLine("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
             }
 
             return Ok(forecast);
