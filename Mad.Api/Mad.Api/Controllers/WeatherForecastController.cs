@@ -48,5 +48,20 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("post-current")]
+
+        public string NotificationToCivilians()
+        {
+            var NowWeather = new WeatherForecast();
+            NowWeather.TemperatureC = Random.Shared.Next(-45, 55);
+            string alert = $"Everything is nice! Enjoy your life! The Temperature is {NowWeather.TemperatureC}";
+            if (NowWeather.TemperatureC > 25 || NowWeather.TemperatureC < -5)
+            {
+                alert = $"The weater is shitty, bro! Stay home! The Temperature is {NowWeather.TemperatureC}";
+            }
+            return alert;
+        }
+
+
     }
 }
