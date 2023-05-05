@@ -51,7 +51,7 @@ namespace Mad.Api.Controllers
             return Ok();
         }
 
-        [HttpGet("bradamar-week-forecast-console")]
+        [HttpGet("bradamar-week-forecast")]
         public IActionResult GetWeekForecast()
         {
             var weatherApp = new WeatherForecast();
@@ -64,7 +64,7 @@ namespace Mad.Api.Controllers
                 weatherApp.Date = DateOnly.FromDateTime(todayDate.AddDays(i));
                 weatherApp.TemperatureC = Random.Shared.Next(minPossibleTemperature, maxPossibleTemperature);
                 weatherApp.Summary = Summaries[humanFeelSummaries.CalculateIndex(weatherApp.TemperatureC)];
-                forecast.Add("Day - " + weatherApp.Date + " with temperature in Celsius " + weatherApp.TemperatureC + "; in Fahrenheit " + weatherApp.TemperatureF + "; feels " + weatherApp.Summary);
+                forecast.Add($"Day - {weatherApp.Date} with temperature in Celsius {weatherApp.TemperatureC}; in Fahrenheit {weatherApp.TemperatureF}; feels {weatherApp.Summary}");
             }
 
             return Ok(forecast);

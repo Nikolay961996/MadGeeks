@@ -11,10 +11,8 @@ namespace Mad.Api
             // получает эта функция. Все что ниже -40 будет считаться "Freezing", всё что выше +40 будет считаться "Scorching"
             index = (temperature - (-40)) / 80.0 * 9;
 
-            if (index > 9)
-                index = 9;
-            else if (index < 0)
-                index = 0;
+            // Корректировка если индекс получился больше 9 или меньше 0
+            index = Math.Max(Math.Min(9, index), 0);
 
             return (int)index;
         }
