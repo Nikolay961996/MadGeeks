@@ -12,7 +12,9 @@ namespace Mad.Api.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        public const int minPossibleTemperature = -40, maxPossibleTemperature = 40, daysToPrint = 7;
+        private readonly int minPossibleTemperature = -40;
+        private readonly int maxPossibleTemperature = 40;
+        private readonly int daysToPrint = 7;
 
         private readonly ILogger<WeatherForecastController> _logger;
 
