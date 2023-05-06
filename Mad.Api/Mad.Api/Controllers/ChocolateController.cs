@@ -1,4 +1,5 @@
 ﻿using Mad.Bl.Services.Chocolate;
+using Mad.Data.Entities.Chocolate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mad.Api.Controllers

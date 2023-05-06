@@ -15,7 +15,7 @@ namespace Mad.Bl.Services.Chocolate
             {
                 Company.Id.Add(Guid.NewGuid());
                 Company.Name.Add(companyName);
-                newCompany = "ID: " + Company.Id[^1] + "; Name: " + Company.Name[^1];
+                newCompany = $"ID: {Company.Id[^1]}; Name: {Company.Name[^1]}";
             }
             return newCompany;
         }
@@ -24,7 +24,7 @@ namespace Mad.Bl.Services.Chocolate
             var list = new List<string>();
             for (int i = 0; i < Company.Name.Count; i++)
             {
-                list.Add("ID: " + Company.Id[i] + "; Name: " + Company.Name[i]);
+                list.Add($"ID: {Company.Id[i]}; Name: {Company.Name[i]}");
             }
             return list;
         }
@@ -39,7 +39,7 @@ namespace Mad.Bl.Services.Chocolate
             {
                 Brand.Id.Add(Guid.NewGuid());
                 Brand.Name.Add(brandName);
-                newBrand = "ID: " + Brand.Id[^1] + "; Name: " + Brand.Name[^1];
+                newBrand = $"ID: {Brand.Id[^1]}; Name: {Brand.Name[^1]}";
             }
             return newBrand;
         }
@@ -48,7 +48,7 @@ namespace Mad.Bl.Services.Chocolate
             var list = new List<string>();
             for (int i = 0; i < Brand.Name.Count; i++)
             {
-                list.Add("ID: " + Brand.Id[i] + "; Name: " + Brand.Name[i]);
+                list.Add($"ID: {Brand.Id[i]}; Name: {Brand.Name[i]}");
             }
             return list;
         }
